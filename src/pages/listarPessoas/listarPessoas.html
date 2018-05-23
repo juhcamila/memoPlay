@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="default">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Familia</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click) ="add()">
+      <ion-icon name="add">
+      </ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list *ngFor="let Familia of lista | async" >
+    <ion-item class="linha" (click) = "presentActionSheet(Familia.id)">
+
+      <ion-thumbnail item-start>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShBtNJWswR9XWH1TV_I6kHdX3x1H9Ld8C9vlg74WIrSySiHuUy">
+      </ion-thumbnail>
+      <h1  color="danger" >     {{Familia.sobrenome}}</h1>
+
+    </ion-item>
+  </ion-list>
+
+
+
+
+
+</ion-content>

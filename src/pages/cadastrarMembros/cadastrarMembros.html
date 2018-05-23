@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="Default">
+
+    <ion-title>Familia</ion-title>
+
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="salvar(form)">
+
+    <ion-list>
+      <img src="{{ photo }}" />
+      <button ion-button class="verde" (click)="selecionarFoto()" block >Tirar    foto<ion-icon    name="camera"></ion-icon></button>
+      <ion-item>
+        <ion-label floating>nome</ion-label>
+        <ion-input type="text" name="nome" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>grauParentesco</ion-label>
+        <ion-input type="text" name="grauParentesco" ngModel></ion-input>
+      </ion-item>
+
+
+      <button ion-button class="verde" block >Adicionar</button>
+    </ion-list>
+
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-navbar color="sucess">
+
+
+
+  </ion-navbar>
+</ion-footer>

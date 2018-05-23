@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar cliar color="secondary">
+
+    <ion-title align=center >Editar Familia</ion-title>
+
+
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <form #form="ngForm" (ngSubmit)="salvar(form)">
+
+      <ion-item>
+        <ion-label stacked>Imagem</ion-label>
+        <ion-input type="text" [(ngModel)]="pessoa.imagem" name="imagem" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="pessoa.nome" name="nome" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Grau de Parentesco</ion-label>
+        <ion-input type="text" [(ngModel)]="pessoa.grauParentesco" name="grauParentesco" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button block color="secondary">Salvar</button><!--full, outline-->
+      </ion-item>
+    </form>
+
+  </ion-list>
+</ion-content>

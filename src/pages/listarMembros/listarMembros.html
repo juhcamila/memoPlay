@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="default">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Membros</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click) ="add()">
+      <ion-icon name="add">
+      </ion-icon>
+    </button>
+  </ion-fab>
+  <ion-grid>
+
+    <ion-card-content *ngFor="let Pessoa of lista | async"  class="linha">
+      <button ion-button (click)="apagar(Pessoa)" color="danger">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <ion-card>
+
+        <img [src]="Pessoa.imagem">
+        <h1  color="danger" >Nome:      {{Pessoa.nome}}</h1>
+        <h2  color="danger">Grau de Parentesco: {{Pessoa.grauParentesco}}</h2>
+      </ion-card>
+      <ion-buttons end>
+
+
+      </ion-buttons>
+    </ion-card-content>
+
+  </ion-grid>
+
+</ion-content>

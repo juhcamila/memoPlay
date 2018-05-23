@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Jogo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+  <ion-card-content>
+    <ion-card *ngIf="tipo == 'jogador1'">
+      <img [src]="">
+      <h1 color="danger">Nome: {{jogador1.nome}}</h1>
+      <h2 color="danger">Grau de Parentesco: {{jogador1.grauParentesco}}</h2>
+    </ion-card>
+    <ion-card *ngIf="tipo == 'jogador2'">
+      <img [src]="">
+      <h1 color="danger">Nome: {{jogador2.nome}}</h1>
+      <h2 color="danger">Grau de Parentesco: {{jogador2.grauParentesco}}</h2>
+    </ion-card>
+  </ion-card-content>
+
+
+  <ion-list>
+    <ion-item *ngFor="let pessoa of familiares | async" (click)="selecionar(pessoa.uid)" >
+      <ion-avatar item-start>
+        <img src="">
+      </ion-avatar>
+      <h2> {{pessoa.nome}}</h2>
+      <p>{{pessoa.grauParentesco}}.</p>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

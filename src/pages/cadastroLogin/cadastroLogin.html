@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar >
+
+    <ion-title>Cadastrar Login</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form #form="ngForm" (ngSubmit)="salvar(form)">
+      <ion-item>
+        <ion-label>Nome</ion-label>
+        <ion-input type="text" name="nome" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="text" name="email" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data de nascimento</ion-label>
+        <ion-input type="date" name="dataNascimento" ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" name="senha" ngModel></ion-input>
+      </ion-item>
+      <button ion-button class="verde" block >Cadastrar</button>
+    </form>
+  </ion-list>
+
+
+
+
+</ion-content>
