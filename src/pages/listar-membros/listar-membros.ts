@@ -1,49 +1,41 @@
 import {Component} from '@angular/core';
 import {ActionSheetController, ModalController, NavController, NavParams} from 'ionic-angular';
-
 import {Pessoa} from '../../models/pessoa';
-
 
 import {AngularFirestore} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {CadastrarMembros} from '../cadastrarMembros/cadastrarMembros';
+import {CadastrarMembrosPage} from "../cadastrar-membros/cadastrar-membros";
 
 
 @Component({
-  selector: 'app-listarMembros',
-  templateUrl: './listarMembros.html'
+  selector: 'app-listar-membros',
+  templateUrl: './listar-membros.html'
 })
-export class ListarMembros  {
+export class ListarMembrosPage {
 
   public lista: Observable<Pessoa[]>;
-  public id ;
+  public familiaId;
 
   constructor(public nvCtrl: NavController,
               public params: NavParams,
               public db: AngularFirestore,
               public afAuth: AngularFireAuth,
               public asCtrl: ActionSheetController,
-              public modalCtrl: ModalController)
-  {
+              public modalCtrl: ModalController) {
 
-    this.id = params.get('id');
-    this.lista = db.collection<Pessoa>('pessoa', ref=>ref.where("id","==", this.id)).valueChanges();
-
-    // db.collection<Pessoa>('pessoa').valueChanges().subscribe(value =>{
-    //  console.log(value);
-    //  });
+    this.familiaId = params.get('familiaId');
+    this.lista = db.collection<Pessoa>('pessoa', ref => ref.where("id", "==", this.familiaId)).valueChanges();
 
   }
 
-  public add() : void{
-    this.nvCtrl.push(CadastrarMembros, {id: this.id});
+  public add(): void {
+    this.nvCtrl.push(CadastrarMembrosPage, {familiaId: this.familiaId});
   }
 
-  public apagar(pessoa){
+  public apagar(pessoa) {
     delete this.lista[pessoa.id];
   }
-
 
 
 }

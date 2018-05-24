@@ -26,12 +26,12 @@
 
       <ion-item>
         <ion-label>Senha</ion-label>
-        <ion-input type="text" formControlName="senha" name="senha" [(ngModel)]="senha"></ion-input>
+        <ion-input type="password" formControlName="senha" name="senha" [(ngModel)]="senha"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Repita a Senha</ion-label>
-        <ion-input type="text" formControlName="confirmaSenha" name="confirmaSenha" [(ngModel)]="confirmaSenha"></ion-input>
+        <ion-input type="password" formControlName="confirmaSenha" name="confirmaSenha" [(ngModel)]="confirmaSenha"></ion-input>
       </ion-item>
 
       <button ion-button class="verde" block [disabled]="formCadastro.invalid">Cadastrar</button>

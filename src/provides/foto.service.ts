@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Camera, CameraOptions} from "@ionic-native/camera";
 
 @Injectable()
@@ -7,7 +7,7 @@ export class FotoService {
 
   }
 
-  public tirarFoto() {
+  public async tirarFoto() {
     const cameraOptions: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -15,14 +15,7 @@ export class FotoService {
       mediaType: this.camera.MediaType.PICTURE
     };
 
-    return this.camera.getPicture(cameraOptions).then((imageData) => {
-
-        console.log(imageData);
-        return 'data:image/jpeg;base64,' + imageData;
-      },
-      (error) => {
-        alert("Erro ao tirar foto");
-      });
+    return 'data:image/jpeg;base64,' + await this.camera.getPicture(cameraOptions);
   }
 
   public galeria() {

@@ -40,7 +40,7 @@ export class CadastroLogin {
 
   async salvar() {
 
-    if(this.senha != this.confirmaSenha){
+    if (this.senha != this.confirmaSenha) {
       this.toastCtrl.create({
         message: "Senhas não conferem",
         duration: 3000
@@ -64,7 +64,7 @@ export class CadastroLogin {
             console.log(user);
             obj.uid = user.uid;
             this.db.collection('login').doc(user.uid).set(obj);
-          })
+          });
 
     } catch (error) {
       this.alertCtrl.create({

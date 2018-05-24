@@ -98,6 +98,5 @@ export class Jogo {
       });
       alert.present();
     }
-
   }
 }

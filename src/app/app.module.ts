@@ -16,11 +16,13 @@ import {Menu} from '../pages/menu/menu';
 import {Jogo} from "../pages/jogo/jogo";
 import {CadastroFamilia} from '../pages/cadastroFamilia/cadastroFamilia';
 import {CadastroLogin} from '../pages/cadastroLogin/cadastroLogin';
-import {ListarPessoas} from '../pages/listarPessoas/listarPessoas';
+import {ListarFamiliasPage} from '../pages/listar-familias/listar-familias';
 import {Editar} from '../pages/editar/editar';
-import {CadastrarMembros} from '../pages/cadastrarMembros/cadastrarMembros';
-import {ListarMembros} from '../pages/listarMembros/listarMembros';
 
+import {ListarMembrosPage} from '../pages/listar-membros/listar-membros';
+import {ArquivoService} from '../provides/arquivo.service';
+import {CadastrarMembrosPage} from "../pages/cadastrar-membros/cadastrar-membros";
+import {AngularFireStorageModule} from "angularfire2/storage";
 
 const config = {
   apiKey: "AIzaSyALy6TdgRCkYPs6hSYXHvt-Es8lRDKkpXg",
@@ -31,7 +33,6 @@ const config = {
   messagingSenderId: "705114889372"
 };
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -40,19 +41,19 @@ const config = {
     Menu,
     CadastroFamilia,
     Jogo,
-    ListarPessoas,
+    ListarFamiliasPage,
     CadastroLogin,
     Editar,
-    CadastrarMembros,
-    ListarMembros
-
+    ListarMembrosPage,
+    CadastrarMembrosPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,18 +63,19 @@ const config = {
     Menu,
     CadastroFamilia,
     Jogo,
-    ListarPessoas,
+    ListarFamiliasPage,
     CadastroLogin,
     Editar,
-    CadastrarMembros,
-    ListarMembros
+    ListarMembrosPage,
+    CadastrarMembrosPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FotoService,
-    Camera
+    Camera,
+    ArquivoService
   ]
 })
 export class AppModule {

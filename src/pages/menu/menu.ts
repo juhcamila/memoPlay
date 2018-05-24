@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {HomePage} from '../home/home';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {ListarPessoas} from "../listarPessoas/listarPessoas";
+import {ListarFamiliasPage} from "../listar-familias/listar-familias";
 import {NavController} from "ionic-angular";
 
 
@@ -13,7 +13,6 @@ export class Menu {
 
   rootPage: any = HomePage;
 
-
   constructor(private afAuth: AngularFireAuth,
               private navCtrl: NavController) { }
 
@@ -21,8 +20,8 @@ export class Menu {
     this.afAuth.auth.signOut();
   }
 
-  public listarPessoas() {
-    this.navCtrl.setRoot(ListarPessoas);
+  public irParalistarFamiliasPage() {
+    this.navCtrl.push(ListarFamiliasPage);
   }
 
   public irParaHomePage() {

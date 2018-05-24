@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ListarPessoas} from '../listarPessoas/listarPessoas';
+import {ListarFamiliasPage} from '../listar-familias/listar-familias';
 import { NgForm } from '@angular/forms';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {NavController, NavParams} from 'ionic-angular';

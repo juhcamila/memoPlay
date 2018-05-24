@@ -11,15 +11,15 @@ import {AngularFirestore} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {ModalController, AlertController} from 'ionic-angular';
-import {ListarMembros} from '../listarMembros/listarMembros';
+import {ListarMembrosPage} from '../listar-membros/listar-membros';
 import {Jogo} from '../jogo/jogo';
 
 
 @Component({
-  selector: 'app-listarPessoas',
-  templateUrl: './listarPessoas.html'
+  selector: 'app-listar-familias',
+  templateUrl: './listar-falimias.html'
 })
-export class ListarPessoas {
+export class ListarFamiliasPage {
 
   public lista: Observable<Familia[]>;
 
@@ -107,7 +107,7 @@ export class ListarPessoas {
           text: 'Membros',
           handler: () => {
             //git this.entrar(id);
-            this.nvCtrl.push(ListarMembros, {id: id});
+            this.nvCtrl.push(ListarMembrosPage, {familiaId: id});
 
           }
         }, {
@@ -127,7 +127,7 @@ export class ListarPessoas {
   }
 
   public entrar (id: string) {
-    this.nvCtrl.push(ListarMembros, {id: id});
+    this.nvCtrl.push(ListarMembrosPage, {id: id});
   }
 
 
