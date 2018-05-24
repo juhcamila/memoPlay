@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar >
+  <ion-navbar>
 
     <ion-title>Cadastrar Login</ion-title>
 
@@ -8,31 +8,35 @@
 
 <ion-content>
   <ion-list>
-    <form #form="ngForm" (ngSubmit)="salvar(form)">
+    <form #form="ngForm" (ngSubmit)="salvar(form)" [formGroup]="formCadastro">
       <ion-item>
         <ion-label>Nome</ion-label>
-        <ion-input type="text" name="nome" ngModel></ion-input>
+        <ion-input type="text" formControlName="nome" name="nome" [(ngModel)]="nome"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Email</ion-label>
-        <ion-input type="text" name="email" ngModel></ion-input>
+        <ion-input type="text" formControlName="email" name="email" [(ngModel)]="email"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Data de nascimento</ion-label>
-        <ion-input type="date" name="dataNascimento" ngModel></ion-input>
+        <ion-input type="date" formControlName="dataNascimento" name="dataNascimento" [(ngModel)]="dataNascimento"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password" name="senha" ngModel></ion-input>
+        <ion-label>Senha</ion-label>
+        <ion-input type="text" formControlName="senha" name="senha" [(ngModel)]="senha"></ion-input>
       </ion-item>
-      <button ion-button class="verde" block >Cadastrar</button>
+
+      <ion-item>
+        <ion-label>Repita a Senha</ion-label>
+        <ion-input type="text" formControlName="confirmaSenha" name="confirmaSenha" [(ngModel)]="confirmaSenha"></ion-input>
+      </ion-item>
+
+      <button ion-button class="verde" block [disabled]="formCadastro.invalid">Cadastrar</button>
     </form>
   </ion-list>
-
-
 
 
 </ion-content>
