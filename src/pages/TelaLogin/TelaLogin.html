@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar cliar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="adicionarLogin()">
+      <button ion-button icon-only>
         <ion-icon name="person-add"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,12 +13,19 @@
   <ion-list>
 
     <form [formGroup]="formLogin">
-      <ion-item>
-        <img src="assets/imgs/logoMemo.png"/>
-      </ion-item>
+      <ion-row>
+        <ion-col>
+          <div text-center>
+
+            <img src="assets/imgs/logoMemo.png" padding-top/>
+
+          </div>
+        </ion-col>
+      </ion-row>
+
       <ion-item>
         <ion-label stacked>Email</ion-label>
-        <ion-input type="email" name="email"  formControlName="email" [(ngModel)]="email"> </ion-input>
+        <ion-input type="email" name="email" formControlName="email" [(ngModel)]="email"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -28,7 +35,10 @@
       <br>
       <p align="right"><a href="#"> Esqueceu a senha </a></p>
 
-      <button ion-button class="verde" block (click)="entrar()">Entrar</button>
+      <button class="verde" ion-button full (click)="entrar()">Entrar</button>
+
+
+      <button ion-button clear full padding-top (click)="adicionarLogin()">Cadastrar-se</button>
     </form>
   </ion-list>
 </ion-content>

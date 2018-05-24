@@ -50,7 +50,7 @@ export class TelaLogin {
     }catch(error){
       this.alertCtrl.create({
         title: 'Falha no login',
-        subTitle: error.code,
+        subTitle: error.message,
         buttons: ["Ok"]
       }).present();
     }finally {

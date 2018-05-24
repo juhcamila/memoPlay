@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { NgForm } from '@angular/forms';
-import {Login} from '../../models/login';
-import { AngularFireAuth } from 'angularfire2/auth';//import { AngularFirestore } from 'angularfire2/firestore'
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';//import { AngularFireAuth } from 'angularfire2/auth';
-
+import {Component} from '@angular/core';
+import {LoadingController, NavController} from 'ionic-angular';
+import {NgForm} from '@angular/forms';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {AlertController} from "ionic-angular/umd";
 
 @Component({
   selector: 'app-cadastroLogin',
@@ -15,14 +14,14 @@ export class CadastroLogin {
 
   public ref: any;
 
-
-  constructor (public db: AngularFirestore,
-               public navCtrl: NavController,
-               public afAuth: AngularFireAuth) {
+  constructor(public db: AngularFirestore,
+              public navCtrl: NavController,
+              public loadCtrl: LoadingController,
+              public alertCtrl: AlertController,
+              public afAuth: AngularFireAuth) {
   }
 
-
-  async salvar (form: NgForm) {
+  async salvar(form: NgForm) {
 
     let nome: string = form.value.nome;
     let email: string = form.value.email;
@@ -34,12 +33,25 @@ export class CadastroLogin {
       'email': email,
       'dataNascimento': dataNascimento,
       'uid': null
-    }
+    };
 
-    this.afAuth.auth.createUserWithEmailAndPassword(email, senha)
-      .then((user) => {
-        obj.uid = user.uid;
-        this.db.collection('login').doc(user.uid).set(obj);
+    let progress = this.loadCtrl.create();
+    progress.present();
+    try {
+
+      this.afAuth.auth.createUserWithEmailAndPassword(email, senha)
+        .then((user) => {
+          obj.uid = user.uid;
+          this.db.collection('login').doc(user.uid).set(obj);
+        })
+
+    } catch (error) {
+      this.alertCtrl.create({
+        title: "Error",
+        subTitle: error.message
       })
+    } finally {
+      progress.dismiss();
+    }
   }
 }
