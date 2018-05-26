@@ -43,7 +43,7 @@ export class CadastrarMembrosPage {
       const obj = {
         nome: form.value.nome,
         grauParentesco: form.value.grauParentesco,
-        id: await this.afAuth.auth.currentUser.uid
+        id: this.familiaId
       };
 
       let uid = this.afAuth.auth.currentUser.uid;

@@ -13,10 +13,9 @@
 
     <form #form="ngForm" (ngSubmit)="salvar(form)">
 
-      <ion-item>
-        <ion-label stacked>Imagem</ion-label>
-        <ion-input type="text" [(ngModel)]="pessoa.imagem" name="imagem" ngModel></ion-input>
-      </ion-item>
+
+        <img [src]="pessoa.fotoUrl" padding-left/>
+
 
       <ion-item>
         <ion-label stacked>Nome</ion-label>

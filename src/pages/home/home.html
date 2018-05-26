@@ -12,13 +12,20 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click) ="add()">
+      <ion-icon name="image">
+      </ion-icon>
+    </button>
+  </ion-fab>
+
   <ion-card block>
-    <img src="https://i.pinimg.com/564x/5b/8a/e2/5b8ae2ef207c9da132bcdbd7cc95571f.jpg" />
+    <img src="assets/imgs/home.jpg" padding-top/>
     <ion-card-content>
       <ion-card-title>
 
       </ion-card-title>
-      <button ion-button class="verde" (click)="logout()" block>sair</button>
+
 
 
     </ion-card-content>

@@ -24,8 +24,5 @@ export class Menu {
     this.navCtrl.push(ListarFamiliasPage);
   }
 
-  public irParaHomePage() {
-    this.navCtrl.setRoot(HomePage);
 
-  }
 }

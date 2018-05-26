@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
+import {CadastrarMembrosPage} from "../cadastrar-membros/cadastrar-membros";
+import {ListarFamiliasPage} from "../listar-familias/listar-familias";
 
 @Component({
   selector: 'page-home',
@@ -16,4 +18,9 @@ export class HomePage {
   logout () {
     this.afAuth.auth.signOut();
   }
+
+  public add(): void {
+    this.navCtrl.push(ListarFamiliasPage);
+  }
+
 }

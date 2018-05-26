@@ -14,7 +14,7 @@ import {Pessoa} from '../../models/pessoa';
   templateUrl: './editar.html'
 })
 export class Editar {
-  public Pessoa: any = {};
+  public pessoa: any = {};
 
   constructor(
     private db: AngularFirestore,
@@ -22,24 +22,23 @@ export class Editar {
     public afAuth: AngularFireAuth,
     private navParams: NavParams  ) {
 
-    let id = navParams.get('id');
+    let id = navParams.get('membroId');
     db.collection("pessoa").doc(id).valueChanges().subscribe((dados) => {
-      this.Pessoa = dados;
+      this.pessoa = dados;
     })
   }
 
   salvar(form: NgForm){
 
-    let imagem : string = form.value.imagem;
+
     let nome : string = form.value.nome;
     let grauParentesco : string = form.value.grauParentesco;
 
     const obj = {
-      'imagem' : imagem,
       'nome' : nome,
       'grauParentesco' : grauParentesco
     }
-    let id=this.navParams.get('id');
+    let id=this.navParams.get('membroId');
 
     this.db.collection('pessoa').doc(id).update(obj).then(() =>
     {
