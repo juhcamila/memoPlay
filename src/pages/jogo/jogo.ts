@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ActionSheetController, NavParams, AlertController } from 'ionic-angular';
-
 import { CadastroFamilia } from '../cadastroFamilia/cadastroFamilia';
-
 import { Pessoa } from '../../models/pessoa';
-
-
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';

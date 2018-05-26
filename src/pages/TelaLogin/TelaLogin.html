@@ -1,41 +1,31 @@
 <ion-header>
   <ion-navbar cliar>
     <ion-buttons end>
-
     </ion-buttons>
     <ion-title align=center>Login</ion-title>
-
   </ion-navbar>
 </ion-header>
 <ion-content class="body">
   <ion-list>
-
     <form [formGroup]="formLogin">
       <ion-row>
         <ion-col>
           <div text-center>
-
             <img src="assets/imgs/logoMemo.png" padding-top/>
-
           </div>
         </ion-col>
       </ion-row>
-
       <ion-item>
         <ion-label stacked>Email</ion-label>
         <ion-input type="email" name="email" formControlName="email" [(ngModel)]="email"></ion-input>
       </ion-item>
-
       <ion-item>
         <ion-label stacked>Senha</ion-label>
         <ion-input type="password" name="senha" formControlName="senha" [(ngModel)]="senha"></ion-input>
       </ion-item>
       <br>
       <p (click)="esqueceuSenha()" align="right"><a href="#" > Esqueceu a senha </a></p>
-
       <button class="verde" ion-button full (click)="entrar()">Entrar</button>
-
-
       <button ion-button clear full padding-top (click)="adicionarLogin()">Cadastrar-se</button>
     </form>
   </ion-list>

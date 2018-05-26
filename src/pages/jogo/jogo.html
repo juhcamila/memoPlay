@@ -8,15 +8,13 @@
 
 
 <ion-content>
-
-
   <ion-card-content>
     <ion-card *ngIf="tipo == 'jogador1'">
       <img [src]="">
       <h1 color="danger">Nome: {{jogador1.nome}}</h1>
       <h2 color="danger">Grau de Parentesco: {{jogador1.grauParentesco}}</h2>
     </ion-card>
-    <ion-card *ngIf="tipo == 'jogador2'">
+    <ion-card *ngIf="tipo == 'jogador2' && jogador2">
       <img [src]="">
       <h1 color="danger">Nome: {{jogador2.nome}}</h1>
       <h2 color="danger">Grau de Parentesco: {{jogador2.grauParentesco}}</h2>
