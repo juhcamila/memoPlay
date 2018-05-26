@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Partidas</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-list *ngFor="let jogo of jogos | async" >
+      <ion-item>{{jogo.jogador1}}</ion-item>
+      <ion-item>{{jogo.jogador2}}</ion-item>
+  </ion-list>
+</ion-content>

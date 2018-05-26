@@ -17,15 +17,11 @@ export class TelaLogin {
   email: string = "";
   senha: string = "";
 
-
-
-
   constructor(private afAuth: AngularFireAuth,
               private navCtrl: NavController,
               private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,
               private toastCtrl: ToastController) {
-
 
     this.formLogin = new FormGroup({
       email: new FormControl(),
@@ -42,12 +38,6 @@ export class TelaLogin {
 
     try{
       await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha);
-
-      // this.toastCtrl.create({
-      //   message: "",
-      //   duration: duration
-      // })
-
     }catch(error){
       this.alertCtrl.create({
         title: 'Falha no login',
@@ -57,24 +47,13 @@ export class TelaLogin {
     }finally {
       progress.dismiss();
     }
-    // this.afAuth.auth.signInWithEmailAndPassword(this.email, this.senha)
-    //   .then((user) => {
-    //     //this.navCtrl.setRoot(Menu);
-    //   })
-    //   .catch((error) => {
-    //     this.alertCtrl.create({
-    //       title: 'Falha no login',
-    //       subTitle: error.code,
-    //       buttons: ["Ok"]
-    //     }).present();
-    //   });
   }
 
-  public adicionarLogin(){
+  private adicionarLogin(){
     this.navCtrl.push(CadastroLogin);
   }
 
-  esqueceuSenha(){
+  private esqueceuSenha(){
     this.navCtrl.push(ResetarSenhaPage);
   }
 
