@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import {NavController, AlertController, Loading, ToastController, LoadingController} from 'ionic-angular';
 import {CadastroLogin} from '../cadastroLogin/cadastroLogin';
+import {ResetarSenhaPage} from "../resetar-senha/resetar-senha";
 
 
 @Component({
@@ -71,6 +72,10 @@ export class TelaLogin {
 
   public adicionarLogin(){
     this.navCtrl.push(CadastroLogin);
+  }
+
+  esqueceuSenha(){
+    this.navCtrl.push(ResetarSenhaPage);
   }
 
 }

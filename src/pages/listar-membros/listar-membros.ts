@@ -6,6 +6,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {CadastrarMembrosPage} from "../cadastrar-membros/cadastrar-membros";
+import {Editar} from "../editar/editar";
 
 
 @Component({
@@ -33,9 +34,13 @@ export class ListarMembrosPage {
     this.nvCtrl.push(CadastrarMembrosPage, {familiaId: this.familiaId});
   }
 
-  public apagar(pessoa) {
-    delete this.lista[pessoa.id];
+  public editar( id: string) {
+    this.nvCtrl.push(Editar ,{membroId: id});
   }
 
+
+  public excluir( id: string) {
+    this.db.collection("pessoa").doc(id).delete();
+  }
 
 }

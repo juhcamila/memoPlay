@@ -23,6 +23,7 @@ import {ListarMembrosPage} from '../pages/listar-membros/listar-membros';
 import {ArquivoService} from '../provides/arquivo.service';
 import {CadastrarMembrosPage} from "../pages/cadastrar-membros/cadastrar-membros";
 import {AngularFireStorageModule} from "angularfire2/storage";
+ import {ResetarSenhaPage} from "../pages/resetar-senha/resetar-senha";
 
 const config = {
   apiKey: "AIzaSyALy6TdgRCkYPs6hSYXHvt-Es8lRDKkpXg",
@@ -45,7 +46,8 @@ const config = {
     CadastroLogin,
     Editar,
     ListarMembrosPage,
-    CadastrarMembrosPage
+    CadastrarMembrosPage,
+    ResetarSenhaPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ const config = {
     CadastroLogin,
     Editar,
     ListarMembrosPage,
-    CadastrarMembrosPage
+    CadastrarMembrosPage,
+    ResetarSenhaPage
   ],
   providers: [
     StatusBar,

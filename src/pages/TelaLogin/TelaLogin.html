@@ -1,9 +1,7 @@
 <ion-header>
   <ion-navbar cliar>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="person-add"></ion-icon>
-      </button>
+
     </ion-buttons>
     <ion-title align=center>Login</ion-title>
 
@@ -33,7 +31,7 @@
         <ion-input type="password" name="senha" formControlName="senha" [(ngModel)]="senha"></ion-input>
       </ion-item>
       <br>
-      <p align="right"><a href="#"> Esqueceu a senha </a></p>
+      <p (click)="esqueceuSenha()" align="right"><a href="#" > Esqueceu a senha </a></p>
 
       <button class="verde" ion-button full (click)="entrar()">Entrar</button>
 
