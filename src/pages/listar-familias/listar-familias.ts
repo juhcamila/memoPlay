@@ -13,6 +13,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {ModalController, AlertController} from 'ionic-angular';
 import {ListarMembrosPage} from '../listar-membros/listar-membros';
 import {Jogo} from '../jogo/jogo';
+import {QrCodePage} from "../qr-code/qr-code";
 
 
 @Component({
@@ -45,36 +46,9 @@ export class ListarFamiliasPage {
         {
           text: 'Criar jogo',
           handler: () => {
-            this.db.collection("jogos").add({
-              jogador1: this.afAuth.auth.currentUser.uid,
-              jogador2: null,
-              ganhador: null,
-              familia: id
 
-            }).then((ref) => {
-              this.db.collection("jogos").doc(ref.id).update({id: ref.id});
+            this.nvCtrl.push(QrCodePage);
 
-              this.sorteia(id, ref.id, "jogador1_membro");
-              this.qrData = ref.id;
-              this.createCode() ;
-              let alert = this.alertCtrl.create({
-                title: 'Código do Jogo',
-                subTitle: this.createdCode,
-                buttons: [
-                  {
-                    text: 'Começar',
-                    handler: () => {
-                      this.nvCtrl.push(Jogo, {id: id, jogoid: ref.id});
-                    }
-                  },
-                  {
-                    text: 'Cancelar'
-                  }
-                ]
-              });
-              alert.present();
-
-            })
           }
         },
         {

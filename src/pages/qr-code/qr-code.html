@@ -14,9 +14,14 @@
 
 
 <ion-content padding>
-  <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+
+  <button ion-button full icon-left (click)="gerar()"><ion-icon name="barcode"></ion-icon>Criar QR Code</button>
+
+
+  <ion-card *ngIf="gerar">
+  <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode>
   <ion-card-content>
-    <p>Value: {{ createdCode }}</p>
+    <p>Value: {{ qrData }}</p>
   </ion-card-content>
   </ion-card>
 </ion-content>
