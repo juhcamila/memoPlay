@@ -26,6 +26,10 @@ import {AngularFireStorageModule} from "angularfire2/storage";
  import {ResetarSenhaPage} from "../pages/resetar-senha/resetar-senha";
 import { PartidasPageModule } from '../pages/partidas/partidas.module';
 import { JogoService } from '../provides/jogo.service';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import {QrCodePage} from "../pages/qr-code/qr-code";
+
 
 const config = {
   apiKey: "AIzaSyALy6TdgRCkYPs6hSYXHvt-Es8lRDKkpXg",
@@ -49,7 +53,8 @@ const config = {
     Editar,
     ListarMembrosPage,
     CadastrarMembrosPage,
-    ResetarSenhaPage
+    ResetarSenhaPage,
+    QrCodePage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,8 @@ const config = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    PartidasPageModule
+    PartidasPageModule,
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -73,7 +79,8 @@ const config = {
     Editar,
     ListarMembrosPage,
     CadastrarMembrosPage,
-    ResetarSenhaPage
+    ResetarSenhaPage,
+    QrCodePage
   ],
   providers: [
     StatusBar,
@@ -82,7 +89,8 @@ const config = {
     FotoService,
     Camera,
     ArquivoService,
-    JogoService
+    JogoService,
+    BarcodeScanner
   ]
 })
 export class AppModule {

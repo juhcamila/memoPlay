@@ -22,6 +22,10 @@ import {Jogo} from '../jogo/jogo';
 export class ListarFamiliasPage {
 
   public lista: Observable<Familia[]>;
+  qrData = null;
+  createdCode = null;
+
+
 
   constructor (public nvCtrl: NavController,
                public db: AngularFirestore,
@@ -46,14 +50,16 @@ export class ListarFamiliasPage {
               jogador2: null,
               ganhador: null,
               familia: id
+
             }).then((ref) => {
               this.db.collection("jogos").doc(ref.id).update({id: ref.id});
 
               this.sorteia(id, ref.id, "jogador1_membro");
-
+              this.qrData = ref.id;
+              this.createCode() ;
               let alert = this.alertCtrl.create({
                 title: 'Código do Jogo',
-                subTitle: ref.id,
+                subTitle: this.createdCode,
                 buttons: [
                   {
                     text: 'Começar',
@@ -153,4 +159,8 @@ export class ListarFamiliasPage {
       });
   }
 
+
+  createCode() {
+    this.createdCode = this.qrData;
+  }
 }
