@@ -17,7 +17,7 @@ import {Jogo} from '../jogo/jogo';
 
 @Component({
   selector: 'app-listar-familias',
-  templateUrl: './listar-falimias.html'
+  templateUrl: './listar-familias.html'
 })
 export class ListarFamiliasPage {
 
