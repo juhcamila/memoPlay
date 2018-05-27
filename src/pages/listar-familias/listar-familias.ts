@@ -18,7 +18,7 @@ import {QrCodePage} from "../qr-code/qr-code";
 
 @Component({
   selector: 'app-listar-familias',
-  templateUrl: './listar-falimias.html'
+  templateUrl: './listar-familias.html'
 })
 export class ListarFamiliasPage {
 
