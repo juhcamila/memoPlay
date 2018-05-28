@@ -79,7 +79,7 @@ export class Jogo {
 
   selecionar(id: string) {
 
-    console.log(id);
+
 
     if ((this.tipo == "jogador1" && this.jogador2.uid == id) || (this.tipo == "jogador2" && this.jogador1.uid == id)) {
       this.db.collection("jogos").doc(this.jogoid).update({

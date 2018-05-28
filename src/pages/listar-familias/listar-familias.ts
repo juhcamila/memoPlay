@@ -23,8 +23,7 @@ import {QrCodePage} from "../qr-code/qr-code";
 export class ListarFamiliasPage {
 
   public lista: Observable<Familia[]>;
-  qrData = null;
-  createdCode = null;
+
 
 
 
@@ -46,9 +45,18 @@ export class ListarFamiliasPage {
         {
           text: 'Criar jogo',
           handler: () => {
+            this.db.collection("jogos").add({
+              jogador1: this.afAuth.auth.currentUser.uid,
+              jogador2: null,
+              ganhador: null,
+              familia: id
 
-            this.nvCtrl.push(QrCodePage);
+            }).then((ref) => {
+              this.db.collection("jogos").doc(ref.id).update({id: ref.id});
 
+              this.sorteia(id, ref.id, "jogador1_membro");
+              this.nvCtrl.push(QrCodePage, {id: id, jogoid: ref.id, });
+            })
           }
         },
         {
@@ -75,6 +83,7 @@ export class ListarFamiliasPage {
                     ).then(() => {
                       this.sorteia(id, data.codigo, "jogador2_membro");
                       this.nvCtrl.push(Jogo, {id: id, jogoid: data.codigo});
+
                     });
                   }
                 }
@@ -134,7 +143,5 @@ export class ListarFamiliasPage {
   }
 
 
-  createCode() {
-    this.createdCode = this.qrData;
-  }
+
 }
