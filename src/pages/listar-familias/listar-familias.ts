@@ -5,6 +5,7 @@ import {CadastroFamilia} from '../cadastroFamilia/cadastroFamilia';
 
 import {Familia} from '../../models/familia';
 import {Pessoa} from '../../models/pessoa';
+import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 
 
 import {AngularFirestore} from 'angularfire2/firestore';
@@ -14,6 +15,7 @@ import {ModalController, AlertController} from 'ionic-angular';
 import {ListarMembrosPage} from '../listar-membros/listar-membros';
 import {Jogo} from '../jogo/jogo';
 import {QrCodePage} from "../qr-code/qr-code";
+import {Login} from "../../models/login";
 
 
 @Component({
@@ -23,6 +25,7 @@ import {QrCodePage} from "../qr-code/qr-code";
 export class ListarFamiliasPage {
 
   public lista: Observable<Familia[]>;
+  scannedCode: string;
 
 
 
@@ -32,7 +35,8 @@ export class ListarFamiliasPage {
                public afAuth: AngularFireAuth,
                public asCtrl: ActionSheetController,
                public modalCtrl: ModalController,
-               public alertCtrl: AlertController) {
+               public alertCtrl: AlertController,
+               private barcodeScanner: BarcodeScanner) {
 
     this.lista = db.collection<Familia>('familia').valueChanges();
 
@@ -62,37 +66,19 @@ export class ListarFamiliasPage {
         {
           text: 'Participar do jogo',
           handler: () => {
-            let prompt = this.alertCtrl.create({
-              title: 'Participar do Jogo',
-              message: "Digite o código do jogo",
-              inputs: [
-                {
-                  name: 'codigo',
-                  placeholder: 'Código do Jogo'
-                },
-              ],
-              buttons: [
-                {
-                  text: 'Cancelar'
-                },
-                {
-                  text: 'Começar',
-                  handler: data => {
-                    this.db.collection("jogos").doc(data.codigo).update(
+                    this.scanCode();
+                    this.db.collection("jogos").doc(this.scannedCode).update(
                       {jogador2: this.afAuth.auth.currentUser.uid}
                     ).then(() => {
-                      this.sorteia(id, data.codigo, "jogador2_membro");
-                      this.nvCtrl.push(Jogo, {id: id, jogoid: data.codigo});
+                      this.sorteia(id,this.scannedCode, "jogador2_membro");
+
+                      this.nvCtrl.push(Jogo, {id: id, jogoid: this.scannedCode});
 
                     });
                   }
                 }
-              ]
-            });
-            prompt.present();
 
-          }
-        }, {
+        , {
           text: 'Membros',
           handler: () => {
             //git this.entrar(id);
@@ -135,13 +121,33 @@ export class ListarFamiliasPage {
 
         let membro = pessoas[posicaoAleatoria];
 
-
+         console.log(membro);
         this.db.collection("jogos").doc(jogo).update(
           {[jogador]: membro}
         );
       });
   }
+  partidas (id: string, jogo: string, jogador: string) {
+
+    this.db.collection<Login>('login', ref => ref.where('id', '==', id)).valueChanges()
+      .subscribe(value => {
+
+        let login: Login[] = value;
 
 
+        console.log();
+        this.db.collection("partidas").doc(jogo).update(
+          {[jogador]: login}
+        );
+      });
+  }
+
+  scanCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.scannedCode = barcodeData.text;
+    }, (err) => {
+      console.log('Error: ', err);
+    });
+  }
 
 }

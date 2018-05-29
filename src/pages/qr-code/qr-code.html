@@ -7,20 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>qrCode-page</ion-title>
+
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click) ="entrar()">
+      <ion-icon name="game-controller-b"></ion-icon>
+    </button>
+  </ion-fab>
 
-  <button ion-button full icon-left (click)="gerar()"><ion-icon name="barcode"></ion-icon>Criar QR Code</button>
+  <h3>Clique para gerar o QR Code e Seguida aperte o Play</h3>
+
+  <button ion-button full icon-left class="verde" (click)="gerar()"><ion-icon name="barcode"></ion-icon>Criar QR Code</button>
 
 
 
   <ion-card *ngIf="gerar">
   <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode>
-    <button ion-button block (click)="entrar()">Começar</button>
+
   </ion-card>
 </ion-content>

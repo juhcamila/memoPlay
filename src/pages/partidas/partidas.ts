@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Jogo } from '../../models/jogo';
-import { JogoService } from '../../provides/jogo.service';
+import { Jogos } from '../../models/jogos';
+import { JogosService } from '../../provides/jogos.service';
 import { Observable } from 'rxjs/Observable';
+import {Pessoa} from "../../models/pessoa";
+import {AngularFirestore} from "angularfire2/firestore";
+import {AngularFireAuth} from "angularfire2/auth";
+import {QrCodePage} from "../qr-code/qr-code";
+import {Login} from "../../models/login";
+import {Partidas} from "../../models/partidas";
 
 @IonicPage()
 @Component({
@@ -11,19 +17,22 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PartidasPage {
 
-  jogos: Observable<Jogo[]>
+  public lista: Observable<Partidas[]>;
+   public resultado: Observable<Login[]>;
+  jogo : string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private jogoService: JogoService) {
-    this.jogos = jogoService.listar();
+              public db: AngularFirestore,
+              public afAuth: AngularFireAuth,
+              private jogoService: JogosService) {
 
-    jogoService.listar().subscribe(value =>{
-      console.log(value);
-    })
+
+
+    this.jogo =this.afAuth.auth.currentUser.uid;
+    this.lista = db.collection<Partidas>('partidas', ref => ref.where(("jogador1")||("jogador2"), "==", this.jogo )).valueChanges();
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PartidasPage');
-  }
+
 }

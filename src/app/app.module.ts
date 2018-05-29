@@ -25,7 +25,7 @@ import {CadastrarMembrosPage} from "../pages/cadastrar-membros/cadastrar-membros
 import {AngularFireStorageModule} from "angularfire2/storage";
  import {ResetarSenhaPage} from "../pages/resetar-senha/resetar-senha";
 import { PartidasPageModule } from '../pages/partidas/partidas.module';
-import { JogoService } from '../provides/jogo.service';
+import { JogosService } from '../provides/jogos.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {QrCodePage} from "../pages/qr-code/qr-code";
@@ -89,7 +89,7 @@ const config = {
     FotoService,
     Camera,
     ArquivoService,
-    JogoService,
+    JogosService,
     BarcodeScanner
   ]
 })

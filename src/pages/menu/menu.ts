@@ -20,9 +20,6 @@ export class Menu {
     this.afAuth.auth.signOut();
   }
 
-  public irParalistarFamiliasPage() {
-    this.navCtrl.push(ListarFamiliasPage);
-  }
 
   public irParaPartidasPage() {
     this.navCtrl.push(PartidasPage);

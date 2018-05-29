@@ -5,8 +5,12 @@
 </ion-header>
 <ion-content padding>
 
-  <ion-list *ngFor="let jogo of jogos | async" >
-      <ion-item>{{jogo.jogador1}}</ion-item>
-      <ion-item>{{jogo.jogador2}}</ion-item>
+  <ion-list *ngFor="let Partidas of lista | async "  >
+   <div *ngIf="Partidas.jogador1 != undefined && Partidas.jogador2 != undefined">
+    <ion-item >{{Partidas.jogador1}}  </ion-item>
+    <h1>x</h1>
+    <ion-item>{{Partidas.jogador2}}</ion-item>
+    <ion-item *ngIf="Partidas.ganhador != undefined"> Ganhador: {{Partidas.ganhador}}</ion-item>
+  </div>
   </ion-list>
 </ion-content>

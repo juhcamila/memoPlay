@@ -5,6 +5,7 @@ import { Pessoa } from '../../models/pessoa';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
+import {ListarFamiliasPage} from "../listar-familias/listar-familias";
 
 
 @Component({
@@ -33,7 +34,6 @@ export class Jogo {
     this.jogoid = params.get('jogoid');
 
 
-
     this.familiares = db.collection<Pessoa>('pessoa', ref => ref.where('id', '==', familiaid)).valueChanges();
 
     db.collection("jogos").doc<any>(this.jogoid).valueChanges().subscribe((jogo => {
@@ -50,7 +50,7 @@ export class Jogo {
         }
       }
       else {
-        if(jogo.ganhador == afAuth.auth.currentUser.uid) {
+        if (jogo.ganhador == afAuth.auth.currentUser.uid) {
 
           let alert = this.alertCtrl.create({
             title: 'Parabéns',
@@ -58,7 +58,7 @@ export class Jogo {
             buttons: ['OK']
           });
           alert.present().then(() => {
-            this.nvCtrl.pop();
+            this.nvCtrl.push(ListarFamiliasPage);
           })
         }
         else {
@@ -75,6 +75,9 @@ export class Jogo {
       }
 
     }));
+    this.db.collection("partidas").doc(this.jogoid).update({
+      ganhador: this.afAuth.auth.currentUser.uid
+    })
   }
 
   selecionar(id: string) {
@@ -82,6 +85,7 @@ export class Jogo {
 
 
     if ((this.tipo == "jogador1" && this.jogador2.uid == id) || (this.tipo == "jogador2" && this.jogador1.uid == id)) {
+
       this.db.collection("jogos").doc(this.jogoid).update({
         ganhador: this.afAuth.auth.currentUser.uid
       })

@@ -1,7 +1,10 @@
-app-listar-familias{
-    ion-content{
-        background-image: "assets/imgs/folhaFundo.png";
+page-listar-familias{
+    ion-page{
+       background-image: url('../../assets/imgs/folhaFundo.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
+  ion-page > ion-content{
+    background-color: transparent;
+  }
 }

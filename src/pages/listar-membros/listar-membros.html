@@ -28,10 +28,10 @@
         <img [src]="Pessoa.fotoUrl">
         <h1  color="danger" >Nome:      {{Pessoa.nome}}</h1>
         <h2  color="danger">Grau de Parentesco: {{Pessoa.grauParentesco}}</h2>
-        <button ion-button (click)="editar(Pessoa.uid)" >
+        <button ion-button class="verde" (click)="editar(Pessoa.uid)" >
           <ion-icon name="construct"></ion-icon>
         </button>
-        <button ion-button (click)="excluir(Pessoa.uid)" >
+        <button ion-button class="verde" (click)="excluir(Pessoa.uid)" >
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-card>

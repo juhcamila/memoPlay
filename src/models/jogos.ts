@@ -1,6 +1,6 @@
 import{ Membro } from "./membro"
 0
-export interface Jogo {
+export interface Jogos {
     familia: string
     ganhador: string
     id: string
