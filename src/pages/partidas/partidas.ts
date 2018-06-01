@@ -17,20 +17,23 @@ import {Partidas} from "../../models/partidas";
 })
 export class PartidasPage {
 
-  public lista: Observable<Partidas[]>;
-   public resultado: Observable<Login[]>;
-  jogo : string;
+  public lista: Observable<any[]>;
+  usuario : string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public db: AngularFirestore,
-              public afAuth: AngularFireAuth,
-              private jogoService: JogosService) {
+              public afAuth: AngularFireAuth) {
 
 
 
-    this.jogo =this.afAuth.auth.currentUser.uid;
-    this.lista = db.collection<Partidas>('partidas', ref => ref.where(("jogador1")||("jogador2"), "==", this.jogo )).valueChanges();
+    this.usuario =this.afAuth.auth.currentUser.uid;
+
+    // this.lista = db.collection<any>('jogos',
+    //     ref => ref.where("jogador1", ">=", this.usuario )
+    //       .where("jogador2", "<=", this.usuario)).valueChanges();
+
+    this.lista = db.collection<any>('jogos').valueChanges();
 
   }
 

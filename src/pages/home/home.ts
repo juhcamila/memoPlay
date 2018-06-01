@@ -3,6 +3,8 @@ import {NavController} from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
 import {CadastrarMembrosPage} from "../cadastrar-membros/cadastrar-membros";
 import {ListarFamiliasPage} from "../listar-familias/listar-familias";
+import {PartidasPage} from "../partidas/partidas";
+
 
 @Component({
   selector: 'page-home',
@@ -23,4 +25,7 @@ export class HomePage {
     this.navCtrl.push(ListarFamiliasPage);
   }
 
+  public partidas() : void {
+    this.navCtrl.push(PartidasPage);
+  }
 }

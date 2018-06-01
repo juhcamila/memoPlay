@@ -1,27 +1,37 @@
 <ion-header>
   <ion-navbar color="default">
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title>Início</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-fab right bottom>
-    <button ion-fab color="secondary" (click) ="add()">
-      <ion-icon name="image">
-      </ion-icon>
-    </button>
+
+  <!--<ion-fab right bottom>-->
+    <!--<button ion-fab color="secondary" (click) ="add()">-->
+      <!--<ion-icon name="image">-->
+      <!--</ion-icon>-->
+    <!--</button>-->
+  <!--</ion-fab>-->
+
+  <ion-fab bottom right>
+    <button ion-fab  color="secondary"><ion-icon name="menu"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click) ="add()"><ion-icon name="game-controller-b"></ion-icon></button>
+      <button ion-fab (click) ="partidas()"><ion-icon name="podium"></ion-icon></button>
+    </ion-fab-list>
   </ion-fab>
+
   <ion-card block>
     <img src="assets/imgs/home.png" padding-top/>
     <ion-card-content>
     </ion-card-content>
   </ion-card>
 </ion-content>
-<ion-footer>
-  <ion-navbar color="sucess">
-  </ion-navbar>
-</ion-footer>
+<!--<ion-footer>-->
+  <!--<ion-navbar color="sucess">-->
+  <!--</ion-navbar>-->
+<!--</ion-footer>-->

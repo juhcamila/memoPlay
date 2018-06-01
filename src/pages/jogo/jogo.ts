@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, ActionSheetController, NavParams, AlertController } from 'ionic-angular';
-import { CadastroFamilia } from '../cadastroFamilia/cadastroFamilia';
 import { Pessoa } from '../../models/pessoa';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -68,16 +67,13 @@ export class Jogo {
             buttons: ['OK']
           });
           alert.present().then(() => {
-            this.nvCtrl.pop();
+            this.nvCtrl.push(ListarFamiliasPage);
           })
         }
 
       }
 
     }));
-    this.db.collection("partidas").doc(this.jogoid).update({
-      ganhador: this.afAuth.auth.currentUser.uid
-    })
   }
 
   selecionar(id: string) {

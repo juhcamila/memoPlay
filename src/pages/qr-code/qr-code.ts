@@ -16,14 +16,6 @@ import {NgForm} from "@angular/forms";
 import {Pessoa} from "../../models/pessoa";
 import {Jogo} from "../jogo/jogo";
 
-/**
- * Generated class for the QrCodePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-qr-code',
   templateUrl: 'qr-code.html',
@@ -45,16 +37,17 @@ export class QrCodePage {
                public alertCtrl: AlertController) {
 
      this.id = params.get('id');
+     this.jogoid = params.get('jogoid');
 
-    this.jogoid = params.get('jogoid');
+     let sub = this.db.collection('jogos').doc<any>(this.jogoid).valueChanges().subscribe((jogo) => {
+       if(jogo.jogador2 != null) {
+         this.nvCtrl.push(Jogo, { id: this.id, jogoid: this.jogoid}).then(() => {
+           sub.unsubscribe();
+         })
 
-  }
-  gerar(){
+       }
+     })
 
-    this.qrData = this.jogoid;
-  }
-  entrar(){
-    this.nvCtrl.push(Jogo, { id: this.id, jogoid: this.qrData});
   }
 
 

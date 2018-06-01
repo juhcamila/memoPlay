@@ -51,7 +51,9 @@ export class ListarFamiliasPage {
           handler: () => {
             this.db.collection("jogos").add({
               jogador1: this.afAuth.auth.currentUser.uid,
+              jogador1nome: this.afAuth.auth.currentUser.displayName,
               jogador2: null,
+              jogador2nome: null,
               ganhador: null,
               familia: id
 
@@ -68,7 +70,10 @@ export class ListarFamiliasPage {
           handler: () => {
                     this.scanCode();
                     this.db.collection("jogos").doc(this.scannedCode).update(
-                      {jogador2: this.afAuth.auth.currentUser.uid}
+                      {
+                        jogador2: this.afAuth.auth.currentUser.uid,
+                        jogador2nome: this.afAuth.auth.currentUser.displayName
+                      }
                     ).then(() => {
                       this.sorteia(id,this.scannedCode, "jogador2_membro");
 

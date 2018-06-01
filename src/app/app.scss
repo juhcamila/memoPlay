@@ -16,5 +16,7 @@
 // automatically applied to the <body> element in the app.
 ion-content {
   background-image: url('../assets/imgs/folhaFundo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 
 }

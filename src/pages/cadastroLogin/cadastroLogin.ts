@@ -63,7 +63,12 @@ export class CadastroLogin {
           .then((user) => {
             console.log(user);
             obj.uid = user.uid;
-            this.db.collection('login').doc(user.uid).set(obj);
+            this.db.collection('login').doc(user.uid).set(obj).then(() => {
+              this.afAuth.auth.currentUser.updateProfile({
+                displayName: obj.nome,
+                photoURL: null
+              });
+            })
           });
 
     } catch (error) {

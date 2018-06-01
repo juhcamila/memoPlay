@@ -14,20 +14,20 @@
 
 
 <ion-content padding>
-  <ion-fab right bottom>
-    <button ion-fab color="secondary" (click) ="entrar()">
-      <ion-icon name="game-controller-b"></ion-icon>
-    </button>
-  </ion-fab>
+  <!--<ion-fab right bottom>-->
+    <!--<button ion-fab color="secondary" (click) ="entrar()">-->
+      <!--<ion-icon name="game-controller-b"></ion-icon>-->
+    <!--</button>-->
+  <!--</ion-fab>-->
 
-  <h3>Clique para gerar o QR Code e Seguida aperte o Play</h3>
+  <!--<h3>Clique para gerar o QR Code e Seguida aperte o Play</h3>-->
 
-  <button ion-button full icon-left class="verde" (click)="gerar()"><ion-icon name="barcode"></ion-icon>Criar QR Code</button>
+  <!--<button ion-button full icon-left class="verde" (click)="gerar()"><ion-icon name="barcode"></ion-icon>Criar QR Code</button>-->
 
 
 
-  <ion-card *ngIf="gerar">
-  <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode>
+  <ion-card>
+  <ngx-qrcode [qrc-value]="jogoid"></ngx-qrcode>
 
   </ion-card>
 </ion-content>
