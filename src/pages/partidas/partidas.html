@@ -6,14 +6,14 @@
 <ion-content padding>
 
   <ion-list *ngFor="let partida of lista | async "  >
-   <div>
+   <div *ngIf="partida.jogador1 != null && partida.jogador2 != null">
      <ion-item *ngIf="partida.ganhador == partida.jogador1">
-       <h2>{{partida.jogador1nome}} (ganhador)</h2>
-       <p>{{partida.jogador2nome}}</p>
+       <h2>{{partida.jogador1nome}} <ion-icon color="danger" name="trophy"></ion-icon></h2>
+       <p>{{partida.jogador2nome}} <ion-icon name="sad"></ion-icon></p>
      </ion-item>
      <ion-item  *ngIf="partida.ganhador == partida.jogador2" >
-       <h2>{{partida.jogador2nome}} (ganhador)</h2>
-       <p>{{partida.jogador1nome}}</p>
+       <h2>{{partida.jogador2nome}} <ion-icon color="danger" name="trophy"></ion-icon></h2>
+       <p>{{partida.jogador1nome}} <ion-icon name="sad"></ion-icon></p>
      </ion-item>
   </div>
   </ion-list>

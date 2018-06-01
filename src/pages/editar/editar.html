@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar cliar color="secondary">
+  <ion-navbar cliar >
 
     <ion-title align=center >Editar Familia</ion-title>
 
@@ -9,13 +9,14 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list>
 
     <form #form="ngForm" (ngSubmit)="salvar(form)">
 
-
+      <ion-item>
         <img [src]="pessoa.fotoUrl" padding-left/>
-
+      </ion-item>
 
       <ion-item>
         <ion-label stacked>Nome</ion-label>

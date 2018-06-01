@@ -12,7 +12,7 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {FotoService} from "../provides/foto.service";
 import {Camera} from '@ionic-native/camera';
-import {Menu} from '../pages/menu/menu';
+
 import {Jogo} from "../pages/jogo/jogo";
 import {CadastroFamilia} from '../pages/cadastroFamilia/cadastroFamilia';
 import {CadastroLogin} from '../pages/cadastroLogin/cadastroLogin';
@@ -45,7 +45,6 @@ const config = {
     MyApp,
     HomePage,
     TelaLogin,
-    Menu,
     CadastroFamilia,
     Jogo,
     ListarFamiliasPage,
@@ -71,7 +70,6 @@ const config = {
     MyApp,
     HomePage,
     TelaLogin,
-    Menu,
     CadastroFamilia,
     Jogo,
     ListarFamiliasPage,
