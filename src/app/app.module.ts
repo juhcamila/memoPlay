@@ -29,6 +29,7 @@ import { JogosService } from '../provides/jogos.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {QrCodePage} from "../pages/qr-code/qr-code";
+import {MenuPage} from "../pages/menu/menu";
 
 
 const config = {
@@ -53,7 +54,8 @@ const config = {
     ListarMembrosPage,
     CadastrarMembrosPage,
     ResetarSenhaPage,
-    QrCodePage
+    QrCodePage,
+    MenuPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ const config = {
     ListarMembrosPage,
     CadastrarMembrosPage,
     ResetarSenhaPage,
-    QrCodePage
+    QrCodePage,
+    MenuPage
   ],
   providers: [
     StatusBar,
