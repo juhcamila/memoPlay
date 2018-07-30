@@ -76,15 +76,17 @@ export class Jogo {
     }));
   }
 
-  selecionar(id: string) {
-
-
+  selecionar(index: number) {
+    let id = this.familiares[index].uid;
 
     if ((this.tipo == "jogador1" && this.jogador2.uid == id) || (this.tipo == "jogador2" && this.jogador1.uid == id)) {
 
       this.db.collection("jogos").doc(this.jogoid).update({
         ganhador: this.afAuth.auth.currentUser.uid
-      })
+      });
+
+      // removo da lista
+      this.familiares.splice(index, 1);
     }
     else {
       let alert = this.alertCtrl.create({

@@ -4,6 +4,8 @@ import {TelaLogin} from '../pages/TelaLogin/TelaLogin';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import {HomePage} from "../pages/home/home";
+import {ListarFamiliasPage} from "../pages/listar-familias/listar-familias";
+import {PartidasPage} from "../pages/partidas/partidas";
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +16,8 @@ export class MyApp {
 
 
   constructor (platform: Platform,
-               afAuth: AngularFireAuth) {
+               private afAuth: AngularFireAuth
+  ) {
     platform.ready().then(() => {
       afAuth.authState.subscribe((state) => {
         if (state == null) {
@@ -29,6 +32,18 @@ export class MyApp {
 
   irHome(): void {
     this.rootPage = HomePage;
+  }
+
+  listarPessoas() : void {
+    this.rootPage = ListarFamiliasPage;
+  }
+
+  partidas(): void {
+    this.rootPage = PartidasPage;
+  }
+
+  logout () {
+    this.afAuth.auth.signOut();
   }
 
 }

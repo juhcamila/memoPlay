@@ -9,10 +9,15 @@
       <button ion-item menuClose (tap)="irHome()">
         Home
       </button>
-      <button ion-item (click)="listarPessoas()">
+      <button ion-item menuClose (tap)="listarPessoas()">
         Familias
       </button>
-      <button ion-item (click)="logout()">
+
+      <button ion-item menuClose (tap)="partidas()">
+        Partidas
+      </button>
+
+      <button ion-item menuClose (tap)="logout()">
         Sair
       </button>
     </ion-list>

@@ -3,7 +3,7 @@
     <ion-title>Partidas</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="folha">
 
   <ion-list *ngFor="let partida of lista | async "  >
    <div *ngIf="partida.jogador1 != null && partida.jogador2 != null">

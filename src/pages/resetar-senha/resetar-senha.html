@@ -15,11 +15,10 @@
 
 
 
-<ion-content padding>
-  <h6 align="center" padding-top>Digite seu email para recuperar o seu Login</h6>
+<ion-content padding >
   <ion-item>
     <ion-label stacked>Email</ion-label>
-    <ion-input type="text" name="email"  [(ngModel)]="email"></ion-input>
+    <ion-input type="text" name="email"  [(ngModel)]="email" placeholder="Digite seu email"></ion-input>
   </ion-item>
 
   <button ion-button clear full padding-top class="verde" (click)="sendResetePasswordEmail()">Enviar</button>
