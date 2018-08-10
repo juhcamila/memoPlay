@@ -86,7 +86,8 @@ export class Jogo {
       });
 
       // removo da lista
-      this.familiares.splice(index, 1);
+      this.familiares.forEach(value =>
+                              {this.familiares.splice(index, 1)});
     }
     else {
       let alert = this.alertCtrl.create({
