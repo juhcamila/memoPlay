@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ActionSheetController, NavParams, AlertController } from 'ionic-angular';
+import {NavController, ActionSheetController, NavParams, AlertController, ToastController} from 'ionic-angular';
 import { Pessoa } from '../../models/pessoa';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -27,7 +27,8 @@ export class Jogo {
               public afAuth: AngularFireAuth,
               public asCtrl: ActionSheetController,
               public params: NavParams,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private toastCtrl: ToastController) {
 
     let familiaid = params.get('id');
     this.jogoid = params.get('jogoid');
@@ -51,24 +52,18 @@ export class Jogo {
       else {
         if (jogo.ganhador == afAuth.auth.currentUser.uid) {
 
-          let alert = this.alertCtrl.create({
-            title: 'Parabéns',
-            subTitle: 'Você acertou!!',
-            buttons: ['OK']
-          });
-          alert.present().then(() => {
+          this.toastCtrl.create({
+            message: "Parabéns, você acertou.",
+            duration: 3000
+          }).present();
             this.nvCtrl.push(ListarFamiliasPage);
-          })
         }
         else {
-          let alert = this.alertCtrl.create({
-            title: 'Fim do jogo',
-            subTitle: 'Você perdeu!!',
-            buttons: ['OK']
-          });
-          alert.present().then(() => {
-            this.nvCtrl.push(ListarFamiliasPage);
-          })
+          this.toastCtrl.create({
+            message: "Fim do jogo, infelizmente você não acertou.",
+            duration: 3000
+          }).present();
+          this.nvCtrl.push(ListarFamiliasPage);
         }
 
       }
@@ -76,8 +71,8 @@ export class Jogo {
     }));
   }
 
-  selecionar(index: number) {
-    let id = this.familiares[index].uid;
+  selecionar(id: string) {
+
 
     if ((this.tipo == "jogador1" && this.jogador2.uid == id) || (this.tipo == "jogador2" && this.jogador1.uid == id)) {
 
@@ -86,16 +81,14 @@ export class Jogo {
       });
 
       // removo da lista
-      this.familiares.forEach(value =>
-                              {value.splice(index, 1)});
+      // this.familiares.forEach(value =>
+      //                         {value.splice(index, 1)});
     }
     else {
-      let alert = this.alertCtrl.create({
-        title: 'Errou',
-        subTitle: 'Você errou!!',
-        buttons: ['OK']
-      });
-      alert.present();
+      this.toastCtrl.create({
+        message: "Você errou, o personagem não é este",
+        duration: 3000
+      }).present();
     }
   }
 }

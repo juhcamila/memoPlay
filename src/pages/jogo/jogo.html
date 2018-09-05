@@ -23,7 +23,7 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let pessoa of familiares; let i = index | async" (click)="selecionar(i)" >
+    <ion-item *ngFor="let pessoa of familiares | async" (click)="selecionar(pessoa.uid)" >
       <ion-avatar item-start>
         <img [src]="pessoa.fotoUrl">
       </ion-avatar>

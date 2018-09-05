@@ -5,7 +5,10 @@ import {FotoService} from '../../provides/foto.service';
 import { NgForm } from '@angular/forms';
 import { Pessoa } from '../../models/Pessoa';
 import { AngularFireAuth } from 'angularfire2/auth';//import { AngularFirestore } from 'angularfire2/firestore'
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';//import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import {ListarFamiliasPage} from "../listar-familias/listar-familias";
+
+//import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-cadastroFamilia',
@@ -46,7 +49,7 @@ export class CadastroFamilia {
 
       this.db.collection('familia').add(obj).then((ref) => {
         this.db.collection('familia').doc(ref.id).update({id: ref.id}).then(() => {
-          this.navCtrl.pop();
+          this.navCtrl.push(ListarFamiliasPage);
         })
 
       });

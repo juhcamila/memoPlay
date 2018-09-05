@@ -17,8 +17,8 @@
     </button>
   </ion-fab>
 
-  <ion-list *ngFor="let Familia of lista | async" >
-    <ion-item class="linha" (click) = "presentActionSheet(Familia.id)">
+  <ion-list *ngFor="let Familia of lista  | async" >
+    <ion-item class="linha" (click) = "presentActionSheet(Familia.id, Familia.uid)">
 
       <ion-thumbnail item-start>
         <img src="assets/imgs/fotofamilia.jpg" />

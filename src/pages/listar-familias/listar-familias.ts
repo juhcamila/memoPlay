@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, ActionSheetController} from 'ionic-angular';
+import {NavController, ActionSheetController, NavParams} from 'ionic-angular';
 
 import {CadastroFamilia} from '../cadastroFamilia/cadastroFamilia';
 
@@ -25,7 +25,9 @@ import {Login} from "../../models/login";
 export class ListarFamiliasPage {
 
   public lista: Observable<Familia[]>;
+  public lista1: Observable<Pessoa[]>
   scannedCode: string;
+
 
 
 
@@ -36,71 +38,105 @@ export class ListarFamiliasPage {
                public asCtrl: ActionSheetController,
                public modalCtrl: ModalController,
                public alertCtrl: AlertController,
-               private barcodeScanner: BarcodeScanner) {
+               private barcodeScanner: BarcodeScanner,
+               public params: NavParams) {
+
 
     this.lista = db.collection<Familia>('familia').valueChanges();
 
+
+    // for (let Familia of f) {
+    //   this.lista1 = db.collection<Pessoa>('pessoa', ref => ref.where("id", "==", Familia.id)).valueChanges();
+    // }
+
   }
 
-  presentActionSheet (id: string) {
-    let actionSheet = this.asCtrl.create({
 
-      buttons: [
-        {
-          text: 'Criar jogo',
-          handler: () => {
-            this.db.collection("jogos").add({
-              jogador1: this.afAuth.auth.currentUser.uid,
-              jogador1nome: this.afAuth.auth.currentUser.displayName,
-              jogador2: null,
-              jogador2nome: null,
-              ganhador: null,
-              familia: id
 
-            }).then((ref) => {
-              this.db.collection("jogos").doc(ref.id).update({id: ref.id});
 
-              this.sorteia(id, ref.id, "jogador1_membro");
-              this.nvCtrl.push(QrCodePage, {id: id, jogoid: ref.id, });
-            })
-          }
-        },
-        {
-          text: 'Participar do jogo',
-          handler: () => {
-                    this.scanCode();
-                    this.db.collection("jogos").doc(this.scannedCode).update(
-                      {
-                        jogador2: this.afAuth.auth.currentUser.uid,
-                        jogador2nome: this.afAuth.auth.currentUser.displayName
-                      }
-                    ).then(() => {
-                      this.sorteia(id,this.scannedCode, "jogador2_membro");
+  presentActionSheet (id: string, uid: string) {
+    this.lista1 = this.db.collection<Pessoa>('pessoa', ref => ref.where("id", "==", id)).valueChanges();
+    this.db.collection("pessoa").doc<any>(id).valueChanges().subscribe((pessoa => {
+    if (this.afAuth.auth.currentUser.uid == uid || this.afAuth.auth.currentUser.uid == pessoa.uid) {
+      let actionSheet = this.asCtrl.create({
 
-                      this.nvCtrl.push(Jogo, {id: id, jogoid: this.scannedCode});
+        buttons: [
+          {
+            text: 'Criar jogo',
+            handler: () => {
+              this.db.collection("jogos").add({
+                jogador1: this.afAuth.auth.currentUser.uid,
+                jogador1nome: this.afAuth.auth.currentUser.displayName,
+                jogador2: null,
+                jogador2nome: null,
+                ganhador: null,
+                familia: id
 
-                    });
-                  }
+              }).then((ref) => {
+                this.db.collection("jogos").doc(ref.id).update({id: ref.id});
+
+                this.sorteia(id, ref.id, "jogador1_membro");
+                this.nvCtrl.push(QrCodePage, {id: id, jogoid: ref.id,});
+              })
+            }
+          },
+          {
+            text: 'Participar do jogo',
+            handler: () => {
+              this.scanCode();
+              this.db.collection("jogos").doc(this.scannedCode).update(
+                {
+                  jogador2: this.afAuth.auth.currentUser.uid,
+                  jogador2nome: this.afAuth.auth.currentUser.displayName
                 }
+              ).then(() => {
+                this.sorteia(id, this.scannedCode, "jogador2_membro");
 
-        , {
-          text: 'Membros',
-          handler: () => {
-            //git this.entrar(id);
-            this.nvCtrl.push(ListarMembrosPage, {familiaId: id});
+                this.nvCtrl.push(Jogo, {id: id, jogoid: this.scannedCode});
 
+              });
+            }
           }
-        }, {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
+
+          , {
+            text: 'Membros',
+            handler: () => {
+              //git this.entrar(id);
+              this.nvCtrl.push(ListarMembrosPage, {familiaId: id});
+
+            }
+          }, {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
           }
-        }
-      ]
-    });
-    actionSheet.present();
+        ]
+      });
+      actionSheet.present();
+    } else {
+      let actionSheet = this.asCtrl.create({
+
+        buttons: [
+          {
+            text: 'Entrar',
+
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      actionSheet.present();
+    }
+    }));
   }
+
 
   public add (): void {
     this.nvCtrl.push(CadastroFamilia);
