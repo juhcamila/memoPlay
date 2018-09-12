@@ -1,0 +1,35 @@
+<!--
+  Generated template for the SolicitacaoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>solicitacao</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card-content *ngFor="let Notifica of lista | async"  class="linha">
+
+    <ion-card>
+
+      <h1  color="danger" >Nome:      {{Notifica.nome}}</h1>
+      <button ion-button class="verde" (click)="add(Notifica.id, Notifica.uid, Notifica.nome)" >
+        Aceitar
+      </button>
+      <button ion-button color="danger" (click)="excluir(Notifica.id)" >
+        Rejeitar
+      </button>
+    </ion-card>
+
+  </ion-card-content>
+
+
+
+</ion-content>

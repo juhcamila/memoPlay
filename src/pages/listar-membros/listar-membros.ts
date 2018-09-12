@@ -26,6 +26,7 @@ export class ListarMembrosPage {
               public modalCtrl: ModalController) {
 
     this.familiaId = params.get('familiaId');
+    console.log(this.familiaId);
     this.lista = db.collection<Pessoa>('pessoa', ref => ref.where("id", "==", this.familiaId)).valueChanges();
 
   }
