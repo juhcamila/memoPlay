@@ -3,7 +3,6 @@ import {AlertController, IonicPage, LoadingController, NavController, NavParams,
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import {FotoService} from '../../provides/foto.service';
 import { NgForm } from '@angular/forms';
-import { Pessoa } from '../../models/Pessoa';
 import { AngularFireAuth } from 'angularfire2/auth';//import { AngularFirestore } from 'angularfire2/firestore'
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import {ListarFamiliasPage} from "../listar-familias/listar-familias";
